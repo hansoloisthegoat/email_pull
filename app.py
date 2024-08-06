@@ -15,7 +15,7 @@ with open('credentials.json', 'r') as f:
 
 # Set the scopes and redirect URI
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
-REDIRECT_URI = 'http://localhost:8080/oauth2callback'
+REDIRECT_URI = 'https://email-pull-vk36iwuaga-uc.a.run.app'
 
 @app.route('/')
 def index():
