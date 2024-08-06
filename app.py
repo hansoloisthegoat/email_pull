@@ -183,4 +183,5 @@ def credentials_to_dict(credentials):
     }
 
 if __name__ == '__main__':
-    app.run('localhost', 5000, debug=True)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(port, host = '0.0.0.0', debug=True)
