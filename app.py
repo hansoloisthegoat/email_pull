@@ -13,9 +13,12 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'  # for development only
 with open('credentials.json', 'r') as f:
     credentials_info = json.load(f)
 
-# Set the scopes and redirect URI
+# Set the scopes
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
-REDIRECT_URI = 'http://localhost:8080/oauth2callback'
+
+# Get the port from environment variable or default to 8080
+port = int(os.environ.get('PORT', 8080))
+REDIRECT_URI = f'http://localhost:{port}/oauth2callback'
 
 @app.route('/')
 def index():
@@ -90,5 +93,5 @@ def credentials_to_dict(credentials):
     }
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
+
