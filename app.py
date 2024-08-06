@@ -11,7 +11,7 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'  # for development only
 
 # Load credentials from the credentials.json file
 with open('credentials.json', 'r') as f:
-    credentials_info = json.load(f)
+    credentials_info = json.load(f)['web']
 
 # Set the scopes
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
@@ -50,7 +50,7 @@ def index():
 @app.route('/authorize')
 def authorize():
     flow = Flow.from_client_config(
-        credentials_info,
+        {'web': credentials_info},
         scopes=SCOPES
     )
     flow.redirect_uri = REDIRECT_URI
@@ -68,7 +68,7 @@ def authorize():
 def oauth2callback():
     state = session['state']
     flow = Flow.from_client_config(
-        credentials_info,
+        {'web': credentials_info},
         scopes=SCOPES,
         state=state
     )
@@ -94,4 +94,3 @@ def credentials_to_dict(credentials):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
-
