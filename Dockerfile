@@ -17,4 +17,4 @@ EXPOSE 8080
 ENV FLASK_APP=app.py
 
 # Run app.py when the container launches
-CMD ["flask", "run", "python", "app.py"]]
+CMD ["flask", "run", "--host=0.0.0.0"]
